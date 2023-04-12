@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHttp } from "../hooks/useHttp";
+import { useEffect } from "react";
 import ItemLargeCard from "../ItemLargeCard/ItemLargeCard";
 
 function Products() {
@@ -7,24 +8,34 @@ function Products() {
     url: `https://fakestoreapi.com/products`,
     dependencies: [],
   });
+  const [items, setItems] = useState<item[]>([]);
 
-  let items: item[] = [];
-  let itemCards: JSX.Element[] = [];
+  useEffect(() => {
+    if (fetchedData) {
+      // console.log(fetchedData);
+      const dataArray = fetchedData as Array<any>;
+      setItems(
+        dataArray.map((item: item) => {
+          return item;
+        })
+      );
+    }
+  }, [fetchedData]);
 
-  if (fetchedData) {
-    // console.log(fetchedData);
-    const dataArray = fetchedData as Array<any>;
-    dataArray.forEach((item: item) => {
-      // items.push(item);
-      itemCards.push(<ItemLargeCard item={item}></ItemLargeCard>);
-    });
-    console.log(items);
+  function renderThis() {
+    if (isLoading) {
+      return <p>Loading</p>;
+    } else {
+      return items.map((item: item) => {
+        return <ItemLargeCard item={item}></ItemLargeCard>;
+      });
+    }
   }
 
   return (
     <div>
       <h1>Products</h1>
-      {itemCards}
+      {renderThis()}
     </div>
   );
 }
