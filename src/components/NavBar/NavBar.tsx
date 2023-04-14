@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav>
-      <h1>FakeStore</h1>
-      <ul>
+    <nav className="flex flex-row justify-around items-center gap-10 p-6 bg-black text-white">
+      <h1 className="text-4xl font-bold">FakeStore</h1>
+      <ul className="flex flex-row justify-center items-center gap-10">
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
