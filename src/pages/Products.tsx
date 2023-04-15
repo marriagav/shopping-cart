@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHttp } from "../hooks/useHttp";
 import { useEffect } from "react";
-import ItemLargeCard from "../ItemLargeCard/ItemLargeCard";
+import ItemLargeCard from "../components/ItemLargeCard";
 
 function Products() {
   const { isLoading, fetchedData } = useHttp({
