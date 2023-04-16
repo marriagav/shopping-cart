@@ -9,7 +9,9 @@ function ShoppingCart() {
   function loadCartItems() {
     const tempCards: JSX.Element[] = [];
     cartItems.forEach(function (value, key) {
-      tempCards.push(<ItemMediumCard item={key} countOfItem={value} />);
+      tempCards.push(
+        <ItemMediumCard item={key} countOfItem={value} key={key.id} />
+      );
     });
     setItemCards(tempCards);
   }

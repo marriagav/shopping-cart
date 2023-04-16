@@ -32,7 +32,6 @@ function CartProvider(props: CartProviderProps) {
       cartItemsCopy.set(item, 1);
     }
     setCartItems(cartItemsCopy);
-    console.log(cartItems);
   }
 
   return (

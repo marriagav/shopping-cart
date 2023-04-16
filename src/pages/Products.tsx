@@ -13,7 +13,6 @@ function Products() {
 
   useEffect(() => {
     if (fetchedData) {
-      // console.log(fetchedData);
       const dataArray = fetchedData as Array<any>;
       setItems(
         dataArray.map((item: item) => {
