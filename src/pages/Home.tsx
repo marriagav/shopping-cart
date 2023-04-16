@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import homepageImage from "../assets/images/homepage-image.png";
+import ShoppingCart from "../components/ShoppingCart";
+
 function Home() {
   const navigate = useNavigate();
 
@@ -24,6 +26,7 @@ function Home() {
         src={homepageImage}
         alt="Homepage Image"
       />
+      <ShoppingCart />
     </div>
   );
 }

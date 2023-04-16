@@ -1,7 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Interface } from "readline";
 
-const CartContext = React.createContext<any[]>([]);
+interface CartContextInterface {
+  cartItems: Map<item, number>;
+  setCartItems: React.Dispatch<React.SetStateAction<Map<item, number>>>;
+  addCartItem(item: item): void;
+}
+
+const CartContext = React.createContext<CartContextInterface>(
+  {} as CartContextInterface
+);
 
 function useCart() {
   return useContext(CartContext);
@@ -12,16 +20,33 @@ interface CartProviderProps {
 }
 
 function CartProvider(props: CartProviderProps) {
-  const [cartItems, setCartItems] = useState<item[]>([]);
+  const [cartItems, setCartItems] = useState<Map<item, number>>(
+    new Map<item, number>()
+  );
 
   //   function modifyCartItems(items: item[]) {
   //     setCartItems(items);
   //   }
 
-  console.log(cartItems);
+  // cartItems.forEach((item) => {
+  //   console.log(item);
+  // });
+
+  function addCartItem(item: item) {
+    const cartItemsCopy = cartItems;
+    if (cartItems?.has(item)) {
+      const curCount = cartItemsCopy.get(item);
+      cartItemsCopy.set(item, curCount ? curCount + 1 : 0);
+    } else {
+      cartItemsCopy.set(item, 1);
+    }
+    setCartItems(cartItemsCopy);
+
+    console.log(cartItems);
+  }
 
   return (
-    <CartContext.Provider value={[cartItems, setCartItems]}>
+    <CartContext.Provider value={{ cartItems, setCartItems, addCartItem }}>
       {props.children}
     </CartContext.Provider>
   );

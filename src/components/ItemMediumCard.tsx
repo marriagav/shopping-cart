@@ -1,12 +1,14 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
 
-interface itemLargeCardProps {
+interface itemMediumCardProps {
   item: item;
+  countOfItem: number;
 }
 
-function ItemLargeCard(props: itemLargeCardProps) {
+function ItemMediumCard(props: itemMediumCardProps) {
   const { cartItems, addCartItem } = useCart();
+  console.log(props.item);
   return (
     <div className="flex flex-col justify-between items-center border-solid border border-gray-200 shadow rounded-lg gap-3 w-full p-2">
       <div className="flex items-center justify-center h-40 w-full border-solid border-b p-3 rounded-t border-gray-200">
@@ -30,4 +32,4 @@ function ItemLargeCard(props: itemLargeCardProps) {
   );
 }
 
-export default ItemLargeCard;
+export default ItemMediumCard;
