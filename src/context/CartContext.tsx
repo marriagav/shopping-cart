@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Interface } from "readline";
 
 interface CartContextInterface {
   cartItems: Map<item, number>;
@@ -24,16 +23,8 @@ function CartProvider(props: CartProviderProps) {
     new Map<item, number>()
   );
 
-  //   function modifyCartItems(items: item[]) {
-  //     setCartItems(items);
-  //   }
-
-  // cartItems.forEach((item) => {
-  //   console.log(item);
-  // });
-
   function addCartItem(item: item) {
-    const cartItemsCopy = cartItems;
+    const cartItemsCopy = new Map(cartItems);
     if (cartItems?.has(item)) {
       const curCount = cartItemsCopy.get(item);
       cartItemsCopy.set(item, curCount ? curCount + 1 : 0);
@@ -41,7 +32,6 @@ function CartProvider(props: CartProviderProps) {
       cartItemsCopy.set(item, 1);
     }
     setCartItems(cartItemsCopy);
-
     console.log(cartItems);
   }
 

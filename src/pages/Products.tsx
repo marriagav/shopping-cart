@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHttp } from "../hooks/useHttp";
 import { useEffect } from "react";
 import ItemLargeCard from "../components/ItemLargeCard";
+import ShoppingCart from "../components/ShoppingCart";
 
 function Products() {
   const { isLoading, fetchedData } = useHttp({
@@ -51,7 +52,12 @@ function Products() {
     });
   }
 
-  return <div className="grid grid-cols-auto p-20 gap-20">{renderThis()}</div>;
+  return (
+    <div className="grid grid-cols-auto p-20 gap-20">
+      {renderThis()}
+      <ShoppingCart></ShoppingCart>
+    </div>
+  );
 }
 
 export default Products;
