@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
+import Button from "./ui/Button";
 
 interface itemLargeCardProps {
   item: item;
@@ -18,14 +19,13 @@ function ItemLargeCard(props: itemLargeCardProps) {
       </div>
       <h2 className="text-center font-bold w-full">{props.item.title}</h2>
       <p>${props.item.price}</p>
-      <button
-        className="bg-black text-white text-bold p-3 w-full rounded-lg margin-3"
-        onClick={(e) => {
+      <Button
+        onClick={(e: any) => {
           addCartItem(props.item);
         }}
       >
         Add to cart
-      </button>
+      </Button>
     </div>
   );
 }
