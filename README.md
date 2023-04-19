@@ -1,5 +1,7 @@
 # shopping-cart
 
+[Live Preview](https://marriagav.github.io/)
+
 Shopping cart app built with react and tailwind
 
 # Getting Started with Create React App
