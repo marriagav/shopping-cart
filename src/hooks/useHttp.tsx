@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 interface useHttpProps {
   url: string;
-  dependencies: (string | number)[];
+  dependencies: any[];
 }
 
 export const useHttp = (props: useHttpProps) => {
