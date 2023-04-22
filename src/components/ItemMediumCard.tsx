@@ -8,7 +8,7 @@ interface itemMediumCardProps {
 }
 
 function ItemMediumCard(props: itemMediumCardProps) {
-  const { cartItems, addCartItem, removeCartItem } = useCart();
+  const { addCartItem, removeCartItem } = useCart();
   return (
     <div className="flex flex-row justify-between items-center border-solid border border-gray-200 shadow rounded-lg gap-3 w-full p-2">
       <div className="flex items-center justify-start h-40 w-40 p-3">

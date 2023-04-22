@@ -43,7 +43,7 @@ function CartProvider(props: CartProviderProps) {
     if (cartItems?.has(item)) {
       const curCount = cartItemsCopy.get(item);
       const newCount = curCount ? curCount - 1 : 0;
-      if (newCount == 0) {
+      if (newCount === 0) {
         cartItemsCopy.delete(item);
         setCartItems(cartItemsCopy);
       } else {

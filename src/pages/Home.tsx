@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import homepageImage from "../assets/images/homepage-image.png";
-import ShoppingCart from "../components/ShoppingCart";
 
 function Home() {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ function Home() {
       <img
         className="absolute left-0 top-0 opacity-50 md:static md:opacity-100 md:w-3/5"
         src={homepageImage}
-        alt="Homepage Image"
+        alt="Homepage"
       />
     </div>
   );
