@@ -23,7 +23,7 @@ export const useHttp = (props: useHttpProps) => {
     } catch (e) {
       console.error(e);
     }
-  }, [props.dependencies, props.url]);
+  }, [props.dependencies]);
 
   return { isLoading, fetchedData };
 };
