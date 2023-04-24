@@ -50,7 +50,7 @@ function Products() {
     });
   }
 
-  return <div className="grid grid-cols-auto p-20 gap-20">{renderThis()}</div>;
+  return <div className="grid grid-cols-auto p-10 gap-10">{renderThis()}</div>;
 }
 
 export default Products;

@@ -4,14 +4,13 @@ import ItemMediumCard from "./ItemMediumCard";
 import Button from "./ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-
 interface ShoppingCartProps {
   isVisible: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function ShoppingCart(props: ShoppingCartProps) {
-  const { cartItems, cartTotal } = useCart();
+  const { cartItems, cartTotal, saveCartItems } = useCart();
   const [itemCards, setItemCards] = useState<JSX.Element[]>([]);
 
   function loadCartItems() {
@@ -55,16 +54,16 @@ function ShoppingCart(props: ShoppingCartProps) {
           {itemCards}
           <div className="flex flex-col items-center font-bold gap-3 text-2xl">
             <p>Total: ${cartTotal.toFixed(2)}</p>
-            <Button className="w-full h-14" onClick={(e: any) => {}}>
-              Check Out
-            </Button>
             <Button
-              className="bg-red-500 w-full h-14"
+              className="bg-green-500 w-full h-14"
               onClick={(e: any) => {
-                props.setShowModal(false);
+                saveCartItems();
               }}
             >
-              Close
+              Save Cart
+            </Button>
+            <Button className="w-full h-14" onClick={(e: any) => {}}>
+              Check Out
             </Button>
           </div>
         </div>
