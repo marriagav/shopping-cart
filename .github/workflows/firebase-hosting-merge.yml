@@ -2,19 +2,26 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-"on":
+on:
   push:
-    branches:
-      - main
+    branches: [main]
+
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
       - uses: actions/checkout@v3
-      - run: npm run predeploy
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
+          node-version: ${{ matrix.node-version }}
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SHOPPING_CART_AB943 }}"
           channelId: live
           projectId: shopping-cart-ab943
+      - run: npm run predeploy
