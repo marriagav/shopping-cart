@@ -14,7 +14,7 @@ function NavBar() {
       <h1 className="text-4xl font-bold md:hidden text-center bg-black text-white p-3">
         FakeStore
       </h1>
-      <nav className="flex flex-col md:flex-row justify-between items-center gap-x-10 p-3 bg-black text-white sticky top-0">
+      <nav className="flex flex-col md:flex-row justify-between items-center gap-x-10 p-3 md:px-10 bg-black text-white sticky top-0">
         <h1 className="text-4xl font-bold hidden md:block">FakeStore</h1>
         <ul className="flex flex-row justify-around items-center gap-10 w-full md:justify-end">
           <li>
