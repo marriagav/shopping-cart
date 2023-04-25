@@ -73,7 +73,7 @@ function ShoppingCart(props: ShoppingCartProps) {
       onClick={handleCloseModal}
     >
       <div className="bg-white h-full flex flex-col w-full max-w-md gap-3 overflow-auto overscroll-none">
-        <div className="flex flex-row flex-wrap-reverse items-center justify-between px-10 py-5 gap-x-10 gap-y-5 sticky top-0 bg-black text-white">
+        <div className="flex flex-row flex-wrap-reverse items-center justify-between px-10 py-5 gap-x-10 gap-y-5 sticky top-0 bg-black text-white -my-10">
           <h2 className="text-3xl font-bold">Your shopping cart</h2>
           <button
             className="self-center ml-auto"
