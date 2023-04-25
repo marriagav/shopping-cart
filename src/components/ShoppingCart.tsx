@@ -82,7 +82,7 @@ function ShoppingCart(props: ShoppingCartProps) {
             <FontAwesomeIcon icon={faShoppingCart} />
           </button>
         </div>
-        <div className="flex flex-col gap-7 px-10 pb-20 md:pb-10">
+        <div className="flex flex-col gap-7 px-10 pb-28 md:pb-10">
           {itemCards}
           <div className="flex flex-col items-center font-bold gap-3 text-2xl">
             <p>Total: ${cartTotal.toFixed(2)}</p>
