@@ -1,4 +1,4 @@
-import { useQuery, useMutation, MutationKey } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import firebaseApi from "../services/firebaseApi";
 import { useAuth } from "../context/AuthContext";
 
