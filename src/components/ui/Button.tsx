@@ -4,6 +4,7 @@ interface ButtonProps {
   onClick: (e: any) => void;
   children: React.ReactNode;
   className?: string;
+  disabled?: boolean;
 }
 
 function Button(props: ButtonProps) {
@@ -18,7 +19,11 @@ function Button(props: ButtonProps) {
     ${props.className ?? ""}
   `;
   return (
-    <button className={classes} onClick={props.onClick}>
+    <button
+      className={classes}
+      onClick={props.onClick}
+      disabled={props.disabled}
+    >
       {props.children}
     </button>
   );

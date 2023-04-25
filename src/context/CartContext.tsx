@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { saveCart, loadCart, isUserSignedIn, auth } from "../services/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { useAuth } from "../context/AuthContext";
+import { useSaveCart, useLoadCart } from "../hooks/firebaseHooks";
 
 interface CartContextInterface {
   cartItems: Map<item, number>;
@@ -9,6 +9,8 @@ interface CartContextInterface {
   removeCartItem(item: item): void;
   cartTotal: number;
   saveCartItems(): void;
+  cartLoading: boolean;
+  isCartError: boolean;
 }
 
 const CartContext = React.createContext<CartContextInterface>(
@@ -29,23 +31,57 @@ function CartProvider(props: CartProviderProps) {
   );
   const [deletedItems, setDeletedItems] = useState<item[]>([]);
   const [cartTotal, setCartTotal] = useState<number>(0);
+  const { isUserSignedIn } = useAuth();
+  const {
+    mutate: saveCart,
+    isLoading: isUploadLoading,
+    error: isUploadError,
+  } = useSaveCart();
+  const {
+    data: cartData,
+    isLoading: isCartLoading,
+    error: CartError,
+  } = useLoadCart();
+  const [isCartError, setIsCartError] = useState<boolean>(false);
+  const [cartLoading, setcartLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (isUserSignedIn()) {
-        const CartItems = await loadCart();
-        setCartItems(CartItems);
+    if (isUserSignedIn) {
+      if (cartData) {
+        const CartItems = cartData;
+        setCartItems(CartItems ? CartItems : new Map());
         let total = 0;
-        CartItems.forEach((value, key) => {
+        CartItems?.forEach((value, key) => {
           total += key.price * value;
         });
         setCartTotal(total);
-      } else {
-        setCartItems(new Map<item, number>());
-        setCartTotal(0);
       }
-    });
-  }, []);
+    } else {
+      setCartItems(new Map<item, number>());
+      setCartTotal(0);
+      setIsCartError(false);
+      setcartLoading(false);
+    }
+  }, [isUserSignedIn, cartData]);
+
+  useEffect(() => {
+    if (CartError || isUploadError) {
+      setIsCartError(true);
+    } else {
+      setIsCartError(false);
+    }
+    if (isCartLoading || isUploadLoading) {
+      setcartLoading(true);
+    } else {
+      setcartLoading(false);
+    }
+  }, [
+    isUserSignedIn,
+    isCartLoading,
+    CartError,
+    isUploadLoading,
+    isUploadError,
+  ]);
 
   function addCartItem(item: item) {
     const cartItemsCopy = new Map(cartItems);
@@ -79,8 +115,8 @@ function CartProvider(props: CartProviderProps) {
     }
   }
 
-  function saveCartItems() {
-    saveCart(cartItems, deletedItems);
+  async function saveCartItems() {
+    saveCart({ cart: cartItems, deletedItems: deletedItems });
   }
 
   return (
@@ -92,6 +128,8 @@ function CartProvider(props: CartProviderProps) {
         removeCartItem,
         cartTotal,
         saveCartItems,
+        cartLoading,
+        isCartError: isCartError,
       }}
     >
       {props.children}
