@@ -35,7 +35,7 @@ function SignInSection() {
             src={user?.photoURL || ""}
             alt="Profile picture"
           ></ProfileImage>
-          <p>{user?.displayName || ""}</p>
+          <p className="hidden md:block">{user?.displayName || ""}</p>
         </button>
       </>
     );

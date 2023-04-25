@@ -14,10 +14,7 @@ function SignInButton(props: SignInButtonProps) {
   };
 
   useEffect(() => {
-    // if (isError) {
-    //   console.log(isError);
-    //   console.log(error);
-    // }
+    // TODO: Handle error
   }, [isError, error]);
 
   return (
@@ -26,7 +23,7 @@ function SignInButton(props: SignInButtonProps) {
       disabled={isLoading}
       className={props.className}
     >
-      {isLoading ? "Signing in..." : "Sign in with Google"}
+      {isLoading ? "Signing in..." : "Sign in"}
     </Button>
   );
 }
