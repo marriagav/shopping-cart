@@ -4,6 +4,8 @@ import ItemMediumCard from "./ItemMediumCard";
 import Button from "./ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uuidv4 } from "uuid";
+
 interface ShoppingCartProps {
   isVisible: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,7 +47,7 @@ function ShoppingCart(props: ShoppingCartProps) {
       const tempCards: JSX.Element[] = [];
       cartItems.forEach(function (value, key) {
         tempCards.push(
-          <ItemMediumCard item={key} countOfItem={value} key={key.id} />
+          <ItemMediumCard item={key} countOfItem={value} key={uuidv4()} />
         );
       });
       setItemCards(tempCards);

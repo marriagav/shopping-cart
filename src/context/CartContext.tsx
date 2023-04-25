@@ -29,19 +29,23 @@ function CartProvider(props: CartProviderProps) {
   const [cartItems, setCartItems] = useState<Map<item, number>>(
     new Map<item, number>()
   );
+
   const [deletedItems, setDeletedItems] = useState<item[]>([]);
   const [cartTotal, setCartTotal] = useState<number>(0);
   const { isUserSignedIn } = useAuth();
+
   const {
     mutate: saveCart,
     isLoading: isUploadLoading,
     error: isUploadError,
   } = useSaveCart();
+
   const {
     data: cartData,
     isLoading: isCartLoading,
     error: CartError,
   } = useLoadCart();
+
   const [isCartError, setIsCartError] = useState<boolean>(false);
   const [cartLoading, setcartLoading] = useState<boolean>(false);
 

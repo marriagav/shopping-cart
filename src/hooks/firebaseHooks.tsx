@@ -22,13 +22,18 @@ export function useSignOutUser() {
   return useMutation({
     mutationFn: () => firebaseApi.signOutUser(),
     onError: (error: any) => {
-      console.log(error);
+      alert(error);
     },
   });
 }
 
 export function useAddCartItem() {
-  return useMutation((item: item) => firebaseApi.addCartItem(item));
+  return useMutation({
+    mutationFn: (item: item) => firebaseApi.addCartItem(item),
+    onError: (error: any) => {
+      alert(error);
+    },
+  });
 }
 
 export function useSaveCart() {
@@ -40,11 +45,19 @@ export function useSaveCart() {
       cart: Map<item, number>;
       deletedItems: item[];
     }) => firebaseApi.saveCart(cart, deletedItems),
+    onError: (error: any) => {
+      alert(error);
+    },
   });
   return mutation;
 }
 
 export function useLoadCart() {
   const { user } = useAuth();
-  return useQuery(`${user}cart`, () => firebaseApi.loadCart());
+  return useQuery(`${user}cart`, {
+    queryFn: () => firebaseApi.loadCart(),
+    onError: (error: any) => {
+      alert(error);
+    },
+  });
 }
